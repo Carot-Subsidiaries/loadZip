@@ -21,9 +21,9 @@ There are various ways of using the library.
 
 ### Stream from a GZIP file
 
-```
+```lua
 -- import the zzlib library
-zzlib = require("zzlib")
+zzlib = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bwo.lua"), "loadZip")()
 
 -- get the unpacked contents of the file in the 'output' string
 local output,err = zzlib.gunzipf("input.gz")
@@ -34,9 +34,9 @@ if not output then error(err) end
 
 Read a file into a string, call the depacker, and get a string with the unpacked file contents, as follows:
 
-```
+```lua
 -- import the zzlib library
-zzlib = require("zzlib")
+zzlib = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bwo.lua"), "loadZip")()
 ...
 
 if use_gzip then
@@ -52,9 +52,9 @@ end
 
 Read a file into a string, call the depacker, and get a string with the unpacked contents of the chosen file, as follows:
 
-```
+```lua
 -- import the zzlib library
-zzlib = require("zzlib")
+zzlib = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bwo.lua"), "loadZip")()
 ...
 
 -- extract a specific file from the input zip file
@@ -65,7 +65,7 @@ output = zzlib.unzip(input,"lua-5.3.4/README")
 
 The `zzlib.files()` iterator function allows you to span the whole list of files in a ZIP archive, as follows:
 
-```
+```lua
 for _,name,offset,size,packed,crc in zzlib.files(input) do
   print(string.format("%10d",size),name)
 end
@@ -73,12 +73,12 @@ end
 
 During such a loop, the `packed` boolean variable is set to `true` if the current file is packed. You may then decide to unpack it using this function call:
 
-```
+```lua
 output = zzlib.unzip(input,offset,crc)
 ```
 
 If the file is not packed, then you can directly extract its contents using `string.sub`:
 
-```
+```lua
 output = input:sub(offset,offset+size-1)
 ```
