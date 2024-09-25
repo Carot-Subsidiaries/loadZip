@@ -15,10 +15,10 @@ local infl
 local lua_version = tonumber(_VERSION:match("^Lua (.*)"))
 if not lua_version or lua_version < 5.3 then
   -- older version of Lua or Luajit being used - use bit/bit32-based implementation
-  infl = require("inflate-bit32")
+  infl = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bit32.lua"), "loadZip-iB32")()
 else
   -- From Lua 5.3, use implementation based on bitwise operators
-  infl = require("inflate-bwo")
+  infl = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bwo.lua"), "loadZip-iBWO")()
 end
 
 local zzlib = {}
