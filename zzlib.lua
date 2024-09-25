@@ -187,7 +187,7 @@ function zzlib.files(buf)
   if int4le(buf,p) ~= 0x06054b50 then
     -- not sure there is a reliable way to locate the end of central directory record
     -- if it has a variable sized comment field
-    error(".ZIP file comments not supported")
+    -- TEMP FIX error(".ZIP file comments not supported") TEMP FIX
   end
   local cdoffset = int4le(buf,p+16)+1
   return nextfile,buf,cdoffset
