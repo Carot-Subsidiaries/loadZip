@@ -10,16 +10,7 @@
 
 
 local unpack = table.unpack or unpack
-local infl
-
-local lua_version = tonumber(_VERSION:match("^Lua (.*)"))
-if not lua_version or lua_version < 5.3 then
-  -- older version of Lua or Luajit being used - use bit/bit32-based implementation
-  infl = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bit32.lua"), "loadZip-iB32")()
-else
-  -- From Lua 5.3, use implementation based on bitwise operators
-  infl = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bwo.lua"), "loadZip-iBWO")()
-end
+local infl = loadstring(game:HttpGet("https://github.com/Carot-Subsidiaries/loadZip/raw/refs/heads/master/inflate-bit32.lua"), "loadZip-iB32")()
 
 local zzlib = {}
 
@@ -158,7 +149,6 @@ end
 
 local function int4le(str,pos)
   local a,b,c,d = str:byte(pos,pos+3)
-  print(a,b,c,d)
   return ((d*256+c)*256+b)*256+a
 end
 
