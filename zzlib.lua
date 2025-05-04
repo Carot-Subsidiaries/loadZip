@@ -158,6 +158,7 @@ end
 
 local function int4le(str,pos)
   local a,b,c,d = str:byte(pos,pos+3)
+  print(a,b,c,d)
   return ((d*256+c)*256+b)*256+a
 end
 
